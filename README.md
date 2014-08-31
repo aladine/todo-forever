@@ -17,3 +17,5 @@ Once you have verified that your system can run, check out the [commands](doc/co
 ## Web Performance
 
 The starting code is based on google's Web Starter Kit. By monitoring the page speed, it strives to give you a high performance starting point out of the box and we actively work on delivering the best [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) score and frame-rate possible.
+
+[ ![Codeship Status for linmxy/todo-forever](https://www.codeship.io/projects/e374e190-12f7-0132-e710-0e85509bfbd1/status)](https://www.codeship.io/projects/33269)
