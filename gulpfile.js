@@ -163,6 +163,8 @@ gulp.task('pagespeed', pagespeed.bind(null, {
     strategy: 'mobile'
 }));
 
+gulp.task('heroku', 'default');
+
 //// Load custom tasks from the `tasks` directory
 //try {
 //    require('require-dir')('tasks');
