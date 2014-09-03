@@ -51,6 +51,10 @@ define([
                 }
                 return options.inverse(this);
             });
+
+            Handlebars.registerHelper('dateFormat', function(timestamp) {
+                return new Date(timestamp);
+            });
         },
 
         toggleVisible: function () {

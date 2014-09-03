@@ -98,7 +98,9 @@ define([
             return {
                 title: this.$input.val().trim(),
                 order: Todos.nextOrder(),
-                done: false
+                done: false,
+                created:new Date(),
+                updated: new Date()
             };
         },
 
@@ -124,6 +126,11 @@ define([
                     done: done
                 });
             });
+        },
+
+        sanitize: function(str){
+          // this function will truncate extra white spaces  and trim each words maximum 30 chars
+          return str.replace(/\s+/g," ").split(" ").map(function(e,i){return e.substring(0,30);}).join(" ");
         }
     });
 
