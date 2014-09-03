@@ -48,7 +48,7 @@ body
             font-style: italic
     input[type="textarea"]
         width: 466px
-        font-size: 24px
+        font-size: 12px
         font-family: inherit
         line-height: 1.4em
         border: 0
@@ -83,6 +83,12 @@ body
             &.done label
                 color: #777777
                 text-decoration: line-through
+            .desc
+                position: absolute
+                left: 30px
+                top: 40px
+                font-size: 12px
+                font-style:italic  
             .destroy
                 position: absolute
                 right: 5px
@@ -99,9 +105,14 @@ body
                 img
                     width: 100%
                     height: auto
+            .timestamp_cell    
+                float:right
+                .timestamp_created
+                    font-size: 9px
+                .timestamp_updated
+                    font-size: 9px        
             &:hover .destroy
                 display: block
-            
             &.editing
                 border-bottom: none
                 margin-top: -1px
@@ -113,6 +124,11 @@ body
                     width: 444px
                     padding: 13px 15px 14px 20px
                     margin: 0
+                .edit_desc
+                    display: block
+                    width: 444px
+                    padding: 13px 15px 14px 20px
+                    margin: 0    
                 .view
                     display: none
                     label
@@ -121,6 +137,8 @@ body
 
             .edit
                 display: none
+            .edit_desc
+                display: none    
 
             
 #clear-completed

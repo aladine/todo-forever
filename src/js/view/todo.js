@@ -53,7 +53,7 @@ define([
             });
 
             Handlebars.registerHelper('dateFormat', function(timestamp) {
-                return new Date(timestamp);
+                return (""+new Date(timestamp)).substring(0,24);
             });
         },
 
