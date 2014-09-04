@@ -48,7 +48,7 @@ body
             font-style: italic
     input[type="textarea"]
         width: 466px
-        font-size: 12px
+        font-size: 14px
         font-family: inherit
         line-height: 1.4em
         border: 0
@@ -88,7 +88,6 @@ body
                 left: 30px
                 top: 40px
                 font-size: 12px
-                font-style:italic  
             .destroy
                 position: absolute
                 right: 5px
@@ -106,7 +105,7 @@ body
                     width: 100%
                     height: auto
             .timestamp_cell    
-                float:right
+                float: right
                 .timestamp_created
                     font-size: 9px
                 .timestamp_updated
@@ -127,20 +126,43 @@ body
                 .edit_desc
                     display: block
                     width: 444px
+                    height: 100px
+                    font-size : 18px
                     padding: 13px 15px 14px 20px
                     margin: 0    
                 .view
                     display: none
                     label
                         word-break: break-word
-
+                .button--primary, .button--secondary
+                    display: inline-block
+                    padding: 12px 32px
+                    margin-bottom: 13px
+                    margin-top: 13px
+                    min-height: 26px
+                    text-align: center
+                    font-family: "Roboto Condensed",Helvetica,sans-serif
+                    font-weight: 600
+                    text-decoration: none
+                    letter-spacing: 1px
+                    outline: 0
+                .button--primary 
+                    background: #3372df
+                    color: #fff
+                    border: 1px solid #1e5ac1       
+                .button-secondary
+                    background: #fff
+                    color: #3372df
+                    border: 1px solid #e6e6e6
 
             .edit
                 display: none
             .edit_desc
                 display: none    
+            .button--primary, .button--secondary
+                display: none    
 
-            
+
 #clear-completed
     float: right
     line-height: 20px

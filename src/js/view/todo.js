@@ -24,7 +24,8 @@ define([
             'click .destroy':	'clear',
             'keypress .edit':	'updateOnEnter',
             'keydown .edit':	'revertOnEscape',
-            'blur .edit':		'close'
+            'click .js_save':	'close',
+            'click .js_cancel':  'close'
         },
 
         initialize: function () {
@@ -53,7 +54,7 @@ define([
             });
 
             Handlebars.registerHelper('dateFormat', function(timestamp) {
-                return (""+new Date(timestamp)).substring(0,24);
+                return (""+new Date(timestamp)).substring(4,24);
             });
         },
 
@@ -81,9 +82,13 @@ define([
         close: function () {
             var value = this.$input.val();
             var trimmedValue = value.trim();
+            var descValue = "";
 
             if (trimmedValue) {
-                this.model.save({ title: trimmedValue });
+                this.model.save({ 
+                    title: trimmedValue ,
+                    desc : descValue
+                });
 
                 if (value !== trimmedValue) {
                     this.model.trigger('change');
