@@ -24,7 +24,7 @@ define([
             'click .destroy':	'clear',
             'keypress .edit':	'updateOnEnter',
             'keydown .edit':	'revertOnEscape',
-            'click .js_save':	'close',
+            'click .js_save':	'save',
             'click .js_cancel':  'close'
         },
 
@@ -42,6 +42,7 @@ define([
 
             this.toggleVisible();
             this.$input = this.$('.edit');
+            this.$textarea = this.$('.edit_desc');
             return this;
         },
 
@@ -76,13 +77,14 @@ define([
 
         edit: function () {
             this.$el.addClass('editing');
+            this.$textarea.val(this.$textarea.data('desc'));
             this.$input.focus();
         },
 
-        close: function () {
+        save: function () {
             var value = this.$input.val();
             var trimmedValue = value.trim();
-            var descValue = "";
+            var descValue = (this.$textarea.val()).trim();
 
             if (trimmedValue) {
                 this.model.save({ 
@@ -96,13 +98,16 @@ define([
             } else {
                 this.clear();
             }
+            this.close();
+        },
 
+        close: function(){
             this.$el.removeClass('editing');
         },
 
         updateOnEnter: function (e) {
             if (e.keyCode === Common.ENTER_KEY) {
-                this.close();
+                this.save();
             }
         },
 

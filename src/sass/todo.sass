@@ -83,7 +83,16 @@ body
             &.done label
                 color: #777777
                 text-decoration: line-through
+            label
+                text-overflow: ellipsis
+                max-width: 300px
+                white-space: nowrap
+                overflow: hidden
             .desc
+                text-overflow: ellipsis
+                width: 300px
+                white-space: nowrap
+                overflow: hidden
                 position: absolute
                 left: 30px
                 top: 40px
@@ -106,6 +115,7 @@ body
                     height: auto
             .timestamp_cell    
                 float: right
+                margin-right: 10px
                 .timestamp_created
                     font-size: 9px
                 .timestamp_updated
