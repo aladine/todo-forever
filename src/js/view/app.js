@@ -14,11 +14,11 @@ define([
 
         el: '#todoapp',
 
-//        template: _.template(statsTemplate),
         template: Handlebars.compile(statsTemplate),
 
         events: {
-            'keypress #new-todo':		'createOnEnter',
+            'keypress #new-todo':       'createOnEnter',
+            'keypress #new-search':		'search',
             'click #clear-completed':	'clearDone',
             'click #toggle-all':		'toggleAllComplete'
         },
@@ -26,6 +26,7 @@ define([
         initialize: function () {
             this.allCheckbox = this.$('#toggle-all')[0];
             this.$input = this.$('#new-todo');
+            this.$search = this.$('#new-search');
             this.$footer = this.$('#footer');
             this.$main = this.$('#main');
             this.$todoList = this.$('#todo-list');
@@ -43,10 +44,11 @@ define([
         // Re-rendering the App just means refreshing the statistics -- the rest
         // of the app doesn't change.
         render: function () {
-            var done = Todos.done().length;
-            var remaining = Todos.remaining().length;
+            var collection = this.filtered || Todos;
+            var done = collection.done().length;
+            var remaining = collection.remaining().length;
 
-            if (Todos.length) {
+            if (collection.length) {
                 this.$main.show();
                 this.$footer.show();
 
@@ -82,8 +84,9 @@ define([
         },
 
         addAll: function () {
+            var collection = this.filtered || Todos;
             this.$todoList.empty();
-            Todos.each(this.addOne, this);
+            collection.each(this.addOne, this);
         },
 
         filterOne: function (todo) {
@@ -91,12 +94,14 @@ define([
         },
 
         filterAll: function () {
-            Todos.each(this.filterOne, this);
+            var collection = this.filtered || Todos;
+            collection.each(this.filterOne, this);
         },
 
         newAttributes: function () {
             return {
                 title: this.$input.val().trim(),
+                desc: '',
                 order: Todos.nextOrder(),
                 done: false,
                 created:new Date(),
@@ -108,9 +113,25 @@ define([
             if (e.which !== Common.ENTER_KEY || !this.$input.val().trim()) {
                 return;
             }
-
+            
             Todos.create(this.newAttributes());
+            Todos.sort();
+            this.$search.val('');
             this.$input.val('');
+            this.search();
+        },
+
+        search: function (e) {
+            var word = this.$search.val().trim();
+            //only search if there are more than 3 chars
+            if(!word || word.length < 2){
+                this.filtered = null;
+            }else{
+                this.filtered = Todos.search(word);
+                // console.log('filter');
+            }
+            this.addAll();
+            this.render();
         },
 
         clearDone: function () {
@@ -126,11 +147,6 @@ define([
                     done: done
                 });
             });
-        },
-
-        sanitize: function(str){
-          // this function will truncate extra white spaces  and trim each words maximum 30 chars
-          return str.replace(/\s+/g," ").split(" ").map(function(e,i){return e.substring(0,30);}).join(" ");
         }
     });
 

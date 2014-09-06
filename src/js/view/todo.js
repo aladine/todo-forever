@@ -84,8 +84,8 @@ define([
         save: function () {
             var value = this.$input.val();
             var trimmedValue = value.trim();
-            var descValue = (this.$textarea.val()).trim();
-
+            var descValue = this.sanitize(this.$textarea.val());
+            
             if (trimmedValue) {
                 this.model.save({ 
                     title: trimmedValue ,
@@ -119,7 +119,17 @@ define([
         },
 
         clear: function () {
-            this.model.destroy();
+            if(!this.model.get('done')) {
+                Common.alert('This task should be marked completed before deleting.');
+            }
+            else {
+                this.model.destroy();
+            }
+        },
+
+        sanitize: function(str){
+          // this function will truncate extra white spaces  and trim each words maximum 30 chars
+          return str.replace(/\s+/g," ").split(" ").map(function(e,i){return e.substring(0,30);}).join(" ");
         }
     });
 

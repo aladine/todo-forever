@@ -1,6 +1,6 @@
 'use strict';
 
-define([], function () {
+define(['jquery','backbone','view/alert'], function ($, Backbone, AlertView) {
     var exports = {
         TodoFilter: '', // empty, active, completed
 

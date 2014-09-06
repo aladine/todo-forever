@@ -25,6 +25,15 @@ define([
         nextOrder: function () {
             return this.length ? this.last().get('order') + 1 : 1;
         },
+        // search function
+        search: function(str){
+            var keyword = str.toLowerCase();
+            var results = this.filter(function(e){
+                return e.get('title').toLowerCase().indexOf(keyword)>=0 ||
+                    e.get('desc').toLowerCase().indexOf(keyword)>=0;
+            });
+            return new TodosCollection(results);
+        },
 
         comparator: 'order'
     });
