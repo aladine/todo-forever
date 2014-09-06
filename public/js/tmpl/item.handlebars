@@ -1,7 +1,13 @@
 <div class="view">
-    <input type="checkbox" class="toggle" {{#if done}}checked="checked"{{/if}} />
-
-    <label>{{title}}</label>
-    <a class="destroy"><img src="img/icons/delete.png"/></a>
+		<input type="checkbox" class="toggle" {{#if done}}checked="checked"{{/if}} />
+        <label>{{title}}</label>
+	    <span class="desc">{{desc}}</span>
+	    <a class="destroy"><img src="img/icons/delete.png"/></a>
+        <span class="timestamp_updated" title="created at {{dateFormat created}}"> Updated at {{dateFormat updated}}</span>
+     
 </div>
+
 <input class="edit"  type="text" value="{{title}}">
+<textarea class="edit_desc" value="{{desc}}" data-desc="{{desc}}" cols=50 rows=3 placeholder="Description" maxlength="140" ></textarea>
+<button class="button--secondary js_cancel">Cancel</button>
+<button class="button--primary js_save">Save</button>

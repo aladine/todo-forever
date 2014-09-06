@@ -81,7 +81,7 @@ gulp.task('javascripts', function () {
             'src/js/**/*',
             '!src/js/lib/**'
         ])
-        .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
+        .pipe($.if('*.js', $.uglify({preserveComments: 'some',compress: true})))
         .pipe(gulp.dest('public/js'));
 });
 
@@ -159,7 +159,7 @@ gulp.task('default', ['clean'], function (cb) {
 });
 
 gulp.task('pagespeed', pagespeed.bind(null, {
-    url: 'http://todo-enhanced.heroku.com/',
+    url: 'http://todo-forever.heroku.com/',
     strategy: 'mobile'
 }));
 
